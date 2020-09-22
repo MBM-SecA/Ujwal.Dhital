@@ -1,17 +1,21 @@
 ﻿using System;
-using LearnCollections;
+using System.IO;
+using System.Linq;
 public class Program
 {
     static void Main()
     {
  
-        FileIO fileIO = new FileIO();
-        fileIO.LearnDirectories();
-    //     var square = new Square(35);
-    //     square.Display();
- 
-    //    var rectangle = new Rectangle(44,32);
-    //   rectangle.Display();
+      string countriesText = File.ReadAllText("Countries.txt");
+      string[] countries = countriesText.Split("\r\n");
+
+      var countriesWithNInitial = countries.Where(x => x.StartsWith("N")).Select(x => x);
+
+      foreach (var country in countriesWithNInitial)
+      {
+          Console.WriteLine(country);
+      }
  
     }
+}
 
