@@ -1,7 +1,7 @@
 using System;
 class Qsn3
 {
-    static void Main()
+    static void Main7()
     {
         Console.Write("Enter your full Name : ");
         string name = Console.ReadLine();
