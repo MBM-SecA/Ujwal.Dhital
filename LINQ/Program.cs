@@ -30,15 +30,37 @@ namespace LINQ
             var result4 = from y in names
                           where y.Length > 3 && y.ToUpper ().StartsWith ("R")
                           select y;
-            foreach (var name in result4)
-            {
-              Console.WriteLine (name);
-             }
+           // foreach (var name in result4)
+           // {
+            //  Console.WriteLine (name);
+           //  }
 
-          
+           // Projections 
+           var result5 = from num in numbers
+                         select num * num;
+            
+            // Ordering
+            var result6 = from num in numbers
+                          orderby num
+                          select num;
+
+            // Partitioning
+            var result7 = numbers.Skip(5).Take(5);
+
+            // Quantifier              
+           var result8 = numbers.Any(x => x % 2 == 0);
+           var result9 = numbers.All(x => x % 2 == 0);
+           var result10 = numbers.Contains(34);
+
+           var result11 = Enumerable.Range(1, 1000);
+           var result12 = Enumerable.Repeat("Hello World!", 10);
+
+           foreach (var num in result12)
+           {
+               Console.WriteLine(num);
+           }
         }
-            //HW : List countries in Europe which has population less than 100k
-            //HW : List Asian countries which are not invaded.
+            
  
     }
     

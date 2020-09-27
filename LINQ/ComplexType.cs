@@ -1,16 +1,16 @@
 using System;
 using System.Linq;
-using system.collections.generic;
+
 public class ComplexType
 {
-    public void LearnRestrections
+    public void LearnRestrections()
     {
-          var countries = Country.GetCountries();
+        var countries = Country.GetCountries();
 
-            var asianCountries = from country in countries
+         var asianCountries = from country in countries
                                  where country.Continent == "Asia"
                                  select country.Name;
-            var euCountries = from country in countries 
+         var euCountries = from country in countries 
                               where country.Continent == "Europe" && country.Population < 100000 
                               select country.Name;
             Console.WriteLine("European Countries");
@@ -32,12 +32,13 @@ public class ComplexType
             var asCountries2 = from country in countries
                                where country.Continent == "Asia" && country.IndependenceDay == default
                                select country;
-
-
-            foreach(var country in asCountries2)
+             foreach(var country in asCountries2)
             {
                 Console.WriteLine(country.Name);
             }
+
+           // HW - Is there any  african country in your country cllection
+           // HW - Print first 2 largest asian country names. 
     }
 }
       
