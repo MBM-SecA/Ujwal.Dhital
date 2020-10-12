@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 public class EmployeeController : Controller
@@ -5,16 +6,26 @@ public class EmployeeController : Controller
     public ActionResult Index()
     {
         //Object initializer syntax
-        Person empl1 = new Person(){ FirstName = "Uzwal", SurName = "Dhital", Address = "Kathmandu", Salary = 200.0 };
-        Person empl2 = new Person(){ FirstName = "Uzwal", SurName = "Dhital", Address = "Kathmandu", Salary = 200.0 };
-        Person empl3 = new Person(){ FirstName = "Uzwal", SurName = "Dhital", Address = "Kathmandu", Salary = 200.0 };
-        Person empl4 = new Person(){ FirstName = "Uzwal", SurName = "Dhital", Address = "Kathmandu", Salary = 200.0 };
-        Person empl5 = new Person(){ FirstName = "Uzwal", SurName = "Dhital", Address = "Kathmandu", Salary = 200.0 };
-        Person empl6 = new Person(){ FirstName = "Uzwal", SurName = "Dhital", Address = "Kathmandu", Salary = 200.0 };
-
-        List<Person> employees = new List<Person>() {empl1, empl2, empl3, empl4, empl5, empl6};
+       
+        List<Person> employees = Person.GetEmployee();
         return View(employees);
 
     }
+
+    public ActionResult Detail(string firstName)
+    {
+        List<Person> persons = Person.GetEmployee();
+        Person p1 = null;
+        foreach(var p in persons){
+            if (p.FirstName == firstName){
+                p1 = p;
+            }
+        }
+        if (p1 != null){
+            return View(p1);
+        }
+        return View();
+    }
+    
 }
 
