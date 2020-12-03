@@ -1,31 +1,33 @@
 using System;
-using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+
 public class EmployeeController : Controller
 {
     public ActionResult Index()
     {
-        //Object initializer syntax
-       
-        List<Person> employees = Person.GetEmployee();
+        var employees = Person.GetEmployees();
         return View(employees);
 
     }
 
-    public ActionResult Detail(string firstName)
+    public ActionResult Detail([FromQuery] Guid id)
     {
-        List<Person> persons = Person.GetEmployee();
-        Person p1 = null;
-        foreach(var p in persons){
-            if (p.FirstName == firstName){
-                p1 = p;
-            }
-        }
-        if (p1 != null){
-            return View(p1);
-        }
+       var employees = Person.GetEmployees();
+       Person employee = employees.FirstOrDefault(x => x.Id.ToString() == id.ToString());
+
+       return View(employee);
+    }
+    [HttpGet]
+
+    public ActionResult Add()
+    {
         return View();
     }
-    
+    [HttpPost]
+    public ActionResult<String> Add(Person person)
+    {
+       return "Record Saved";
+    }
 }
 
